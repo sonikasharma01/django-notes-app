@@ -54,7 +54,7 @@ pipeline{
                     <p>Build Number: ${env.BUILD_NUMBER}</p>
                     <p>Check console output at: ${env.BUILD_URL}</p>
                 """,
-                to: "your-receiver-email@example.com",
+                to: "sharmasonika00081@gmail.com",
                 mimeType: "text/html"
             )
         }
