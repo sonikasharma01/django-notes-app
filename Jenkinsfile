@@ -42,6 +42,21 @@ pipeline{
                 sh "docker compose up -d"
             }
         }
+    }
 
+    post{                  
+        always{
+            emailext(
+                subject: "Jenkins Build '${env.JOB_NAME}' #${env.BUILD_NUMBER} - ${currentBuild.currentResult}",
+                body: """
+                    <p>Build Status: ${currentBuild.currentResult}</p>
+                    <p>Job: ${env.JOB_NAME}</p>
+                    <p>Build Number: ${env.BUILD_NUMBER}</p>
+                    <p>Check console output at: ${env.BUILD_URL}</p>
+                """,
+                to: "your-receiver-email@example.com",
+                mimeType: "text/html"
+            )
+        }
     }
 }
